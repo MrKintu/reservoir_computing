@@ -12,14 +12,14 @@ uv sync
 uv run ticker.py
 
 # 3. Train reservoir models
-uv run esn_reservoir.py      # Best performing approach
-uv run lsm_reservoir.py       # Spiking neural approach  
-uv run physical_reservoir.py   # Physical simulation approach
+uv run jupyter esn_reservoir.ipynb      # Best performing approach
+uv run jupyter lsm_reservoir.ipynb       # Spiking neural approach  
+uv run jupyter physical_reservoir.ipynb   # Physical simulation approach
 
 # 4. Experiment with notebooks
-jupyter esn_reservoir.ipynb
-jupyter lsm_reservoir.ipynb
-jupyter physical_reservoir.ipynb
+uv run jupyter esn_reservoir.ipynb
+uv run jupyter lsm_reservoir.ipynb
+uv run jupyter physical_reservoir.ipynb
 ```
 
 ## 📁 Project Structure
@@ -80,7 +80,7 @@ reservoir_computing/
 uv run ticker.py
 
 # Train best model (ESN)
-jupyter esn_reservoir.ipynb
+uv run jupyter esn_reservoir.ipynb
 
 # Check results in logs/
 cat logs/esn_reservoir_YYYYMMDD.log
@@ -91,9 +91,9 @@ cat logs/esn_reservoir_YYYYMMDD.log
 ```bash
 # Compare all approaches
 uv run ticker.py
-jupyter esn_reservoir.ipynb
-jupyter lsm_reservoir.ipynb  
-jupyter physical_reservoir.ipynb
+uv run jupyter esn_reservoir.ipynb
+uv run jupyter lsm_reservoir.ipynb  
+uv run jupyter physical_reservoir.ipynb
 
 # Analyse performance differences
 grep -r "Test MSE" logs/
@@ -104,7 +104,7 @@ grep -r "Test MSE" logs/
 ```bash
 # Open notebooks for interactive experimentation, jupyter esn_reservoir.ipynb
 
-# Modify hyperparameters in .py files
+# Modify hyperparameters in .ipynb files
 # Key parameters: n_reservoir, spectral_radius, connectivity, etc.
 ```
 

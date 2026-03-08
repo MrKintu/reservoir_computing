@@ -54,6 +54,28 @@ def load_close_matrix() -> pd.DataFrame:
     logger.info(f"Created merged matrix with shape {merged.shape}")
     return merged
 
+def select_random_ticker(df: pd.DataFrame, random_state: int = 42) -> pd.Series:
+    """Select a random ticker column from the DataFrame."""
+    logger = get_logger("data_utils")
+    if df.empty:
+        logger.error("DataFrame is empty - no tickers available")
+        raise ValueError("DataFrame is empty - no tickers available")
+    
+    # Set random seed for reproducibility using modern Generator
+    rng = np.random.default_rng(random_state)
+    
+    # Get list of available tickers (columns)
+    available_tickers = df.columns.tolist()
+    logger.info(f"Available tickers: {available_tickers}")
+    
+    # Select random ticker
+    selected_ticker = rng.choice(available_tickers)
+    series = df[selected_ticker].dropna()
+    series = series.astype(float)
+    
+    logger.info(f"Randomly selected ticker: {selected_ticker}, length: {len(series)}")
+    return series
+
 def train_val_test_split(series: pd.Series, train_frac=0.7, val_frac=0.15) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Split a 1D series into train/val/test arrays (time-ordered)."""
     logger = get_logger("data_utils")

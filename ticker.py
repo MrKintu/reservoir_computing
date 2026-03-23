@@ -9,7 +9,6 @@ import os
 import re
 import requests
 from lxml import html
-from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 import yfinance as yf
 import pandas as pd
